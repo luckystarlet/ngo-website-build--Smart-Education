@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "tw-animate-css";
+/* Removed conflicting tw-animate-css import that was causing animation class errors */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -75,7 +75,6 @@
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -88,7 +87,6 @@
   --color-primary-dark: #0a4a66;
   --color-secondary: #0066ff;
   --color-accent: #ffa500;
-
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
@@ -137,7 +135,6 @@
   --muted: var(--color-muted);
   --muted-foreground: var(--color-muted-foreground);
   --border: var(--color-border);
-  --success: var(--color-success);
 }
 
 * {
@@ -153,17 +150,104 @@ body {
   color: var(--foreground);
 }
 
+/* Keyframes for animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(14, 98, 136, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(14, 98, 136, 0.6);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulseScale {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 @layer components {
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .btn-primary {
-    @apply bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200;
+    @apply bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 active:scale-95;
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-muted text-primary px-6 py-3 rounded-lg font-semibold transition-colors duration-200 border border-primary;
+    @apply bg-white hover:bg-muted text-primary px-6 py-3 rounded-lg font-semibold transition-all duration-200 border border-primary transform hover:scale-105 active:scale-95;
   }
 
   .section {
@@ -176,5 +260,13 @@ body {
 
   .section-subtitle {
     @apply text-lg text-muted-foreground mb-12;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+  }
+
+  .icon-glow {
+    @apply transition-all duration-300;
   }
 }

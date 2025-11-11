@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react"
 
 export default function Footer() {
@@ -8,7 +9,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Smart Education</h3>
+            <div className="flex items-center gap-2 mb-4">
+              <Image src="/logo.jpg" alt="Smart Education Logo" width={32} height={32} className="h-8 w-auto" />
+              <h3 className="font-bold text-lg">Smart Education</h3>
+            </div>
             <p className="text-sm opacity-80 mb-4">Empowering young minds, changing futures. One student at a time.</p>
             <div className="flex gap-4">
               <a href="#" className="hover:text-accent transition-colors">

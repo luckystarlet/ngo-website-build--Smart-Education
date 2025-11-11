@@ -38,10 +38,10 @@ export default function Impact() {
   ]
 
   const impactStats = [
-    { value: "764+", label: "Students Reached", color: "from-primary" },
-    { value: "26+", label: "Teachers Empowered", color: "from-secondary" },
-    { value: "5+", label: "Schools Enrolled", color: "from-accent" },
-    { value: "100+", label: "Mentors & Volunteers", color: "from-success" },
+    { value: "764+", label: "Students Reached", bgColor: "bg-primary", textColor: "text-white" },
+    { value: "26+", label: "Teachers Empowered", bgColor: "bg-primary-light", textColor: "text-white" },
+    { value: "5+", label: "Schools Enrolled", bgColor: "bg-primary-dark", textColor: "text-white" },
+    { value: "100+", label: "Mentors & Volunteers", bgColor: "bg-accent", textColor: "text-foreground" },
   ]
 
   return (
@@ -63,7 +63,7 @@ export default function Impact() {
             {impactStats.map((stat, index) => (
               <div
                 key={index}
-                className={`bg-gradient-to-br ${stat.color} to-transparent p-8 rounded-xl text-center text-white relative overflow-hidden group`}
+                className={`${stat.bgColor} ${stat.textColor} p-8 rounded-xl text-center relative overflow-hidden group transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-white transition-opacity"></div>
                 <p className="text-5xl font-bold mb-2 relative z-10">{stat.value}</p>
