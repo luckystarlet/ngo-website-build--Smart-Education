@@ -30,11 +30,14 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary to-primary-dark text-white overflow-hidden min-h-screen flex items-center">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl"></div>
-          <div className="absolute -bottom-8 right-10 w-72 h-72 bg-secondary rounded-full mix-blend-multiply filter blur-xl"></div>
-        </div>
+      <section
+        className="relative text-white overflow-hidden min-h-screen flex items-center bg-cover bg-center bg-fixed"
+        style={{
+          backgroundImage:
+            "url(/placeholder.svg?height=1080&width=1920&query=African+students+from+underserved+communities+smiling+laughing+learning+together+in+classroom+in+Kenya+Uganda+Ethiopia)",
+        }}
+      >
+        <div className="absolute inset-0 bg-black opacity-40"></div>
 
         <div className="container relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">

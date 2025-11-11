@@ -83,9 +83,9 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --font-sans: "Poppins", system-ui, -apple-system, sans-serif;
-  --color-primary: #004aad;
-  --color-primary-light: #0056d9;
-  --color-primary-dark: #003a7a;
+  --color-primary: #0e6288;
+  --color-primary-light: #1073a8;
+  --color-primary-dark: #0a4a66;
   --color-secondary: #0066ff;
   --color-accent: #ffa500;
 

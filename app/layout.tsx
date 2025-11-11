@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     description: "Empowering over 2,000 students in underserved areas through mentorship and education.",
     images: ["/og-image.png"],
   },
-    generator: 'v0.app'
+  generator: "v0.app",
 }
 
 export const viewport = {
-  themeColor: "#004aad",
+  themeColor: "#0E6288",
   userScalable: true,
   width: "device-width",
   initialScale: 1,
