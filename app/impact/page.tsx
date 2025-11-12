@@ -74,24 +74,24 @@ export default function Impact() {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="section bg-muted">
+      {/* Full-width impact classroom image */}
+      <section className="section">
         <div className="container">
-          <h2 className="section-title text-center mb-12">Impact in Action</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-              <div key={index} className="relative h-64 rounded-lg overflow-hidden group cursor-pointer">
-                <Image
-                  src={`/smart-education-impact-photo-mentorship-session-.jpg?height=300&width=400&query=smart education impact photo mentorship session ${index}`}
-                  alt={`Impact photo ${index}`}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <p className="text-white font-semibold">Making a Difference</p>
-                </div>
+          <div className="relative h-96 rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src="/impact-classroom.png"
+              alt="Students engaged in Smart Education program"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent flex items-center">
+              <div className="text-white p-8 max-w-2xl">
+                <h3 className="text-4xl font-bold mb-4">Real Impact on the Ground</h3>
+                <p className="text-lg opacity-90">
+                  764+ students and counting, all receiving mentorship and educational support
+                </p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

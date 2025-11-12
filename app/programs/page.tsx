@@ -64,6 +64,11 @@ export default function Programs() {
       <section className="section">
         <div className="container">
           {programs.map((program, index) => {
+            let displayImage = program.image
+            if (index === 0) {
+              displayImage = "/mentor-teaching-classroom.jpg"
+            }
+
             const Icon = program.icon
             return (
               <div
@@ -97,7 +102,7 @@ export default function Programs() {
                   </div>
                   <div className={index % 2 === 1 ? "md:order-1" : ""}>
                     <Image
-                      src={program.image || "/placeholder.svg"}
+                      src={displayImage || "/placeholder.svg"}
                       alt={program.title}
                       width={500}
                       height={400}

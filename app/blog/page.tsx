@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Calendar, User, ArrowRight } from "lucide-react"
+import { Calendar, User, ArrowRight, ExternalLink } from "lucide-react"
 
 export default function Blog() {
   const posts = [
@@ -164,15 +164,16 @@ export default function Blog() {
           <p className="text-xl opacity-90 max-w-2xl mx-auto mb-8">
             Subscribe to our newsletter for stories, updates, and ways to make an impact.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 px-4 py-3 rounded-lg focus:outline-none text-foreground"
-            />
-            <button className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-muted transition-colors">
-              Subscribe
-            </button>
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto justify-center">
+            <a
+              href="https://forms.gle/tGJDcmiTXY45fiFo9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors bg-white text-primary inline-flex items-center justify-center gap-2"
+            >
+              Subscribe to Newsletter
+              <ExternalLink size={18} />
+            </a>
           </div>
         </div>
       </section>

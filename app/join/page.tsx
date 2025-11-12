@@ -1,51 +1,29 @@
 "use client"
-
-import type React from "react"
-
 import { useState } from "react"
-import { CheckCircle } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 
 export default function Join() {
   const [activeTab, setActiveTab] = useState("volunteer")
-  const [submitted, setSubmitted] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    expertise: "",
-    availability: "",
-    schoolName: "",
-    schoolLocation: "",
-    studentsCount: "",
-    headteacherEmail: "",
-  })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+  const googleForms = {
+    volunteer: "https://forms.gle/ZM1z4qinmdoxkSAx8",
+    school: "https://forms.gle/iRR44FsuuhxyzMZc6",
+    mentor: "https://forms.gle/ZM1z4qinmdoxkSAx8",
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    // In a real app, this would send to a backend API
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        expertise: "",
-        availability: "",
-        schoolName: "",
-        schoolLocation: "",
-        studentsCount: "",
-        headteacherEmail: "",
-      })
-      setActiveTab("volunteer")
-    }, 3000)
+  const formContent = {
+    volunteer: {
+      title: "Become a Volunteer",
+      description: "Help us transform young lives through your time, expertise, and passion for education.",
+    },
+    school: {
+      title: "Enroll Your School",
+      description: "Partner with us to bring transformative programs to your students.",
+    },
+    mentor: {
+      title: "Become a Mentor",
+      description: "Be the role model that changes a student's life through mentorship and guidance.",
+    },
   }
 
   return (
@@ -97,238 +75,32 @@ export default function Join() {
 
             {/* Form */}
             <div className="flex-1">
-              {submitted ? (
-                <div className="bg-success bg-opacity-10 border border-success rounded-xl p-12 text-center">
-                  <CheckCircle size={64} className="text-success mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Thank You!</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Your submission has been received. We'll get back to you soon with more information.
+              <div className="bg-muted p-8 rounded-xl border border-border">
+                <h2 className="text-2xl font-bold text-foreground mb-2">
+                  {formContent[activeTab as keyof typeof formContent].title}
+                </h2>
+                <p className="text-muted-foreground mb-8">
+                  {formContent[activeTab as keyof typeof formContent].description}
+                </p>
+
+                <div className="space-y-4">
+                  <p className="text-foreground font-semibold">Ready to get started?</p>
+                  <a
+                    href={googleForms[activeTab as keyof typeof googleForms]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 btn-primary px-8 py-3 font-semibold rounded-lg hover:shadow-lg transition-all"
+                  >
+                    Open Application Form
+                    <ExternalLink size={20} />
+                  </a>
+                  <p className="text-sm text-muted-foreground pt-4">
+                    Click the button above to fill out our{" "}
+                    {formContent[activeTab as keyof typeof formContent].title.toLowerCase()} form. Your submission will
+                    be stored securely and we'll contact you soon.
                   </p>
-                  <p className="text-sm text-muted-foreground">Check your email at {formData.email}</p>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 bg-muted p-8 rounded-xl border border-border">
-                  {activeTab === "volunteer" && (
-                    <>
-                      <h2 className="text-2xl font-bold text-foreground">Become a Volunteer</h2>
-                      <p className="text-muted-foreground">
-                        Help us transform young lives through your time, expertise, and passion for education.
-                      </p>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-2">Full Name *</label>
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                          placeholder="Your name"
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-semibold text-foreground mb-2">Email *</label>
-                          <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder="your@email.com"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-foreground mb-2">Phone Number *</label>
-                          <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder="+254 7XX XXX XXX"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-2">Area of Expertise *</label>
-                        <select
-                          name="expertise"
-                          value={formData.expertise}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                        >
-                          <option value="">Select an area</option>
-                          <option value="mentoring">Mentoring & Coaching</option>
-                          <option value="academics">Academic Support</option>
-                          <option value="tech">Technology & Digital Skills</option>
-                          <option value="careerguidance">Career Guidance</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-2">Availability *</label>
-                        <select
-                          name="availability"
-                          value={formData.availability}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                        >
-                          <option value="">Select your availability</option>
-                          <option value="weekdays">Weekdays</option>
-                          <option value="weekends">Weekends</option>
-                          <option value="flexible">Flexible</option>
-                        </select>
-                      </div>
-                    </>
-                  )}
-
-                  {activeTab === "school" && (
-                    <>
-                      <h2 className="text-2xl font-bold text-foreground">Enroll Your School</h2>
-                      <p className="text-muted-foreground">
-                        Partner with us to bring transformative programs to your students.
-                      </p>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-2">School Name *</label>
-                        <input
-                          type="text"
-                          name="schoolName"
-                          value={formData.schoolName}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                          placeholder="School name"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-2">Location *</label>
-                        <input
-                          type="text"
-                          name="schoolLocation"
-                          value={formData.schoolLocation}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                          placeholder="School location"
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-semibold text-foreground mb-2">
-                            Number of Students *
-                          </label>
-                          <input
-                            type="number"
-                            name="studentsCount"
-                            value={formData.studentsCount}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder="Approximate number"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-foreground mb-2">
-                            Headteacher Email *
-                          </label>
-                          <input
-                            type="email"
-                            name="headteacherEmail"
-                            value={formData.headteacherEmail}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder="headteacher@school.com"
-                          />
-                        </div>
-                      </div>
-                    </>
-                  )}
-
-                  {activeTab === "mentor" && (
-                    <>
-                      <h2 className="text-2xl font-bold text-foreground">Become a Mentor</h2>
-                      <p className="text-muted-foreground">
-                        Be the role model that changes a student's life through mentorship and guidance.
-                      </p>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-2">Full Name *</label>
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                          placeholder="Your name"
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-semibold text-foreground mb-2">Email *</label>
-                          <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder="your@email.com"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-foreground mb-2">Phone Number *</label>
-                          <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder="+254 7XX XXX XXX"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-2">Area of Expertise *</label>
-                        <select
-                          name="expertise"
-                          value={formData.expertise}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                        >
-                          <option value="">Select an area</option>
-                          <option value="academics">Academics</option>
-                          <option value="careerdev">Career Development</option>
-                          <option value="tech">Technology</option>
-                          <option value="entrepreneurship">Entrepreneurship</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div>
-                    </>
-                  )}
-
-                  <button type="submit" className="w-full btn-primary py-3 font-semibold">
-                    Submit Your Application
-                  </button>
-                </form>
-              )}
+              </div>
             </div>
           </div>
         </div>

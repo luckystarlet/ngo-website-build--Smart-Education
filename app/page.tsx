@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowRight, Users, BookOpen, Heart } from "lucide-react"
 
 export default function Home() {
@@ -13,44 +12,43 @@ export default function Home() {
     {
       title: "Mentorship & Career Guidance",
       description: "Connecting students with role models who inspire ambition and self-belief.",
-      image: "/mentorship-program-with-students.jpg",
     },
     {
       title: "Girls Empowerment & Support",
       description: "Providing dignity, support, and hygiene education to ensure girls stay in school.",
-      image: "/girls-in-school-classroom.jpg",
     },
     {
       title: "Digital Literacy",
       description: "Introducing students to computer and technology skills for the modern world.",
-      image: "/students-learning-computer-skills.jpg",
     },
   ]
 
   return (
-    <main
-      className="min-h-screen bg-cover bg-center bg-fixed"
-      style={{
-        backgroundImage:
-          "url(/placeholder.svg?height=1080&width=1920&query=African+students+and+mentors+smiling+laughing+together+in+classroom+mentorship+moment+happiness+Kenya+Uganda+Ethiopia)",
-      }}
-    >
+    <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative text-white overflow-hidden min-h-screen flex items-center">
-        <div className="absolute inset-0 bg-black opacity-40"></div>
+      <section
+        className="relative text-white overflow-hidden min-h-screen flex items-center"
+        style={{
+          backgroundImage: "url('/classroom-mentor.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div className="absolute inset-0 bg-black opacity-50"></div>
 
         <div className="container relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-12 items-center">
             <div className="space-y-6" style={{ animation: "slideInLeft 0.6s ease-out" }}>
               <h1
-                className="text-5xl md:text-6xl font-bold leading-tight"
+                className="text-5xl md:text-6xl font-bold leading-tight text-white"
                 style={{ animation: "fadeInUp 0.6s ease-out" }}
               >
                 Empowering Students,
                 <span className="text-accent ml-2">Inspiring Futures</span>
               </h1>
               <p
-                className="text-lg opacity-90 max-w-lg leading-relaxed"
+                className="text-lg text-white opacity-95 max-w-lg leading-relaxed"
                 style={{ animation: "fadeInUp 0.6s ease-out 0.1s both" }}
               >
                 Smart Education transforms lives through mentorship, career guidance, and digital literacy. We're
@@ -68,23 +66,12 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-
-            <div className="hidden md:block relative" style={{ animation: "slideInRight 0.6s ease-out" }}>
-              <Image
-                src="/african-students-studying-together-in-classroom.jpg"
-                alt="Students learning"
-                width={500}
-                height={500}
-                className="rounded-2xl shadow-2xl"
-                style={{ animation: "float 3s ease-in-out infinite" }}
-              />
-            </div>
           </div>
         </div>
       </section>
 
       {/* Impact Stats */}
-      <section className="section bg-background bg-opacity-95">
+      <section className="section bg-background">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {stats.map((stat, index) => {
@@ -108,7 +95,7 @@ export default function Home() {
       </section>
 
       {/* Featured Programs */}
-      <section className="section bg-background bg-opacity-95">
+      <section className="section bg-background">
         <div className="container">
           <div className="text-center mb-12">
             <h2
@@ -132,15 +119,6 @@ export default function Home() {
                 className="group bg-background rounded-xl overflow-hidden border border-border transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
                 style={{ animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both` }}
               >
-                <div className="relative h-48 overflow-hidden bg-muted">
-                  <Image
-                    src={program.image || "/placeholder.svg"}
-                    alt={program.title}
-                    width={400}
-                    height={300}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
-                  />
-                </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-3 text-foreground">{program.title}</h3>
                   <p className="text-muted-foreground mb-4">{program.description}</p>
@@ -204,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* Testimonial Preview */}
-      <section className="section bg-background bg-opacity-95">
+      <section className="section bg-background">
         <div className="container">
           <div className="text-center mb-12">
             <h2

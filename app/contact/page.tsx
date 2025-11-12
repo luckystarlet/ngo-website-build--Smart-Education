@@ -1,37 +1,8 @@
 "use client"
-
-import type React from "react"
-
-import { useState } from "react"
-import { CheckCircle, Mail, Phone, MapPin } from "lucide-react"
+import { ExternalLink, Mail, Phone, MapPin } from "lucide-react"
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      })
-    }, 3000)
-  }
+  const feedbackForm = "https://forms.gle/YhFtmBwpgMgbtyqL9"
 
   return (
     <main>
@@ -115,63 +86,27 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Contact Form */}
             <div>
-              {submitted ? (
-                <div className="bg-success bg-opacity-10 border border-success rounded-xl p-12 text-center h-full flex flex-col items-center justify-center">
-                  <CheckCircle size={64} className="text-success mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Message Sent!</h3>
-                  <p className="text-muted-foreground mb-4">Thank you for reaching out. We'll get back to you soon.</p>
-                  <p className="text-sm text-muted-foreground">Check your email at {formData.email}</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 bg-muted p-8 rounded-xl border border-border">
-                  <h3 className="text-2xl font-bold text-foreground">Send us a Message</h3>
+              <div className="bg-muted p-8 rounded-xl border border-border h-full flex flex-col justify-center">
+                <h3 className="text-2xl font-bold text-foreground mb-4">Send us a Message</h3>
+                <p className="text-muted-foreground mb-6">
+                  Fill out the form below with your inquiry, feedback, or partnership opportunity. We'll get back to you
+                  as soon as possible.
+                </p>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">Your Name *</label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="Your name"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">Your Email *</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">Message *</label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                      placeholder="Tell us how we can help..."
-                    />
-                  </div>
-
-                  <button type="submit" className="w-full btn-primary py-3 font-semibold">
-                    Send Message
-                  </button>
-                </form>
-              )}
+                <a
+                  href={feedbackForm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 btn-primary px-8 py-3 font-semibold rounded-lg w-full justify-center hover:shadow-lg transition-all mb-4"
+                >
+                  Open Feedback Form
+                  <ExternalLink size={20} />
+                </a>
+                <p className="text-sm text-muted-foreground text-center">
+                  Your message will be securely stored and we'll respond promptly.
+                </p>
+              </div>
             </div>
           </div>
         </div>
