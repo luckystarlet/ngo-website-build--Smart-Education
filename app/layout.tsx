@@ -1,9 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
+
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+
+import { Poppins, Poppins as V0_Font_Poppins, Playfair_Display as V0_Font_Playfair_Display } from 'next/font/google'
+
+// Initialize fonts
+const _poppins = V0_Font_Poppins({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
+const _playfairDisplay = V0_Font_Playfair_Display({ subsets: ['latin'], weight: ["400","500","600","700","800","900"] })
 
 const poppins = Poppins({
   subsets: ["latin"],
